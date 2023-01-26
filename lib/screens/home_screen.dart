@@ -12,7 +12,11 @@ class HomeScreen extends StatelessWidget {
         // true - pop 가능
         // false - pop 불가능
         // 안드 자체에 있는 뒤로가기를 막을 수 있음.
-        return false;
+
+        final canPop = Navigator.of(context).canPop();
+
+        // false
+        return canPop;
       },
       child: MainLayout(
         title: 'Home Screen',
