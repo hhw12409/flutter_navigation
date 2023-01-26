@@ -42,6 +42,36 @@ class RouteTwoScreen extends StatelessWidget {
             },
             child: const Text('Push Named'),
           ),
+          ElevatedButton(
+            onPressed: () {
+              // [HomeScreen, RouteOne, RouteTwo, RouteThree] push
+              // [HomeScreen, RouteOne, RouteThree] pushReplacement
+              // RouteTwo가 RouteThree로 replace된다.
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (_) => const RouteThreeScreen(),
+                ),
+              );
+            },
+            child: const Text('Push Replacement'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.of(context).pushReplacementNamed('/three');
+            },
+            child: const Text('Push ReplacementNamed'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(
+                    builder: (_) => const RouteThreeScreen(),
+                  ),
+                  // false: 스택에 쌓인 스크린 전부 삭제, true는 모두 유지
+                  (route) => false);
+            },
+            child: const Text('Push and Remove'),
+          ),
         ],
       ),
     );
